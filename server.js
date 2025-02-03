@@ -44,6 +44,7 @@ app.use(passUserToView)
 const pagesCtrl = require('./controllers/pages')
 const authCtrl = require('./controllers/auth')
 const vipCtrl = require('./controllers/vip')
+const fruitsCtrl = require('./controllers/fruits')
 
 // ROUTE HANDLERS
 app.get('/', pagesCtrl.home)
@@ -53,6 +54,11 @@ app.get('/auth/sign-in', authCtrl.signInForm)
 app.post('/auth/sign-in', authCtrl.signIn)
 app.get('/auth/sign-out', authCtrl.signOut)
 app.get('/vip-lounge', isSignedIn, vipCtrl.welcome)
+
+// FRUITS ROUTES
+app.get('/fruits/new', fruitsCtrl.newFruits)
+app.post('/fruits', fruitsCtrl.addFruits)
+app.get('/fruits', fruitsCtrl.index)
 
 app.listen(port, () => {
     console.log(`The express app is ready on port ${port}`)
